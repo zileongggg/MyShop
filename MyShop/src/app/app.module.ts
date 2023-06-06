@@ -20,9 +20,13 @@ import { MatChipsModule } from "@angular/material/chips";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { HomepageComponent } from './pages/homepage/homepage.component';
+import { DetailsPageComponent } from './pages/details-page/details-page.component';
+import { CartPageComponent } from './pages/cart-page/cart-page.component';
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [AppComponent, LoginPageComponent, HomepageComponent, DetailsPageComponent, CartPageComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,

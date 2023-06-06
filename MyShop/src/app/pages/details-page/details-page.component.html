@@ -1,0 +1,29 @@
+<mat-toolbar class="max-w-7xl mx-auto border-x justify-between">
+	<mat-icon class="mat-18" routerLink="/homepage">arrow_back</mat-icon>
+	<a routerLink="/homepage">My Shop</a>
+	<div class="icon">
+		<mat-icon
+			class="mat-18"
+			routerLink="/cartPage"
+			[matBadge]="totalCarts"
+			matBadgeColor="warn"
+			>shopping_cart</mat-icon
+		>
+	</div>
+</mat-toolbar>
+<mat-card *ngIf="product">
+	<img class="h-72" matCardImage [src]="product.images" />
+	<mat-card-header>
+		<mat-card-title>{{ product.title }}</mat-card-title>
+		<mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
+	</mat-card-header>
+	<div class="px-4 text-lg font-semibold">{{ product.price | currency }}</div>
+	<mat-card-content class="mt-2">
+		{{ product.description }}
+	</mat-card-content>
+	<mat-card-actions align="end">
+		<button mat-raised-button color="primary" (click)="addToCart(product)">
+			Add to Cart
+		</button>
+	</mat-card-actions>
+</mat-card>

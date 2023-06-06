@@ -1,0 +1,44 @@
+<mat-toolbar class="max-w-7xl mx-auto">
+	<mat-icon class="mat-18" routerLink="/homepage">arrow_back</mat-icon>
+	<a routerLink="/homepage" class="flex flex-grow justify-center">My Shop</a>
+</mat-toolbar>
+<div class="text-center mt-8" *ngIf="cartItems.length == 0">
+	<mat-icon style="height: auto; width: auto" class="text-8xl">shopping_bag</mat-icon>
+	<div class="text-lg">Your basket is empty...</div>
+</div>
+<div *ngIf="cartItems.length > 0">
+	<mat-list *ngFor="let item of cartItems">
+		<mat-list-item class="my-2" style="height: fit-content">
+			<div class="flex items-center justify-between">
+				<div class="flex items-center">
+					<img class="w-24" [src]="item.images" alt="Item Image" />
+					<div class="ml-4">
+						<div class="font-bold whitespace-pre-line">{{ item.title }}</div>
+						<div>{{ item.price | currency }}</div>
+					</div>
+				</div>
+				<div class="flex items-center">
+					<button mat-icon-button (click)="decreaseQuantity(item)">
+						<mat-icon>remove</mat-icon>
+					</button>
+					<div class="px-2">{{ item.quantity }}</div>
+					<button mat-icon-button (click)="increaseQuantity(item)">
+						<mat-icon>add</mat-icon>
+					</button>
+				</div>
+			</div>
+		</mat-list-item>
+		<mat-divider></mat-divider>
+	</mat-list>
+	<!-- checkout section -->
+	<div style="height: fit-content" class="mx-2">
+		<div class="flex justify-between mt-2">
+			Subtotal:<span>{{ totalPrice | currency }}</span>
+		</div>
+		<div class="flex justify-between m-0">Shipping:<span>Free</span></div>
+		<div class="flex justify-between my-2 font-bold">
+			Total:<span>{{ totalPrice | currency }}</span>
+		</div>
+		<button mat-raised-button class="w-full" color="primary">Checkout</button>
+	</div>
+</div>
