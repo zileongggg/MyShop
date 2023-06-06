@@ -1,1 +1,74 @@
-<p>homepage works!</p>
+<mat-toolbar class="max-w-7xl mx-auto border-x justify-between">
+	<a routerLink="/homepage">My Shop</a>
+	<div class="icon">
+		<mat-icon class="mat-18 mr-3" [matMenuTriggerFor]="menu">filter_list</mat-icon>
+		<mat-menu #menu="matMenu">
+			<button mat-menu-item (click)="getProductsWithSortedPrice('asce', 0)">
+				price: low-high
+			</button>
+			<button mat-menu-item (click)="getProductsWithSortedPrice('desc', 0)">
+				price: high-low
+			</button>
+		</mat-menu>
+		<mat-icon
+			class="mat-18"
+			routerLink="/cartPage"
+			[matBadge]="totalCarts"
+			matBadgeColor="warn"
+			>shopping_cart</mat-icon
+		>
+	</div>
+</mat-toolbar>
+
+<main>
+	<div class="my-2 mx-2 flex items-center justify-between">
+		<input
+			type="text"
+			class="w-screen border border-gray-300 rounded px-4 py-2"
+			[(ngModel)]="searchQuery"
+			placeholder="Search..."
+			(keyup.enter)="searchProducts(0)"
+		/>
+		<button
+			type="button"
+			class="bg-blue-800 text-white font-bold py-2 px-4 rounded ml-2"
+			(click)="searchProducts(0)"
+		>
+			Search
+		</button>
+	</div>
+	<mat-chip-listbox class="m-2">
+		<mat-chip-option selected (click)="getProductsByCategory('all')"
+			>All</mat-chip-option
+		>
+		<mat-chip-option (click)="getProductsByCategory('smartphones')"
+			>Smartphone</mat-chip-option
+		>
+		<mat-chip-option (click)="getProductsByCategory('skincare')"
+			>Skincare</mat-chip-option
+		>
+		<mat-chip-option (click)="getProductsByCategory('tops')">Tops</mat-chip-option>
+	</mat-chip-listbox>
+	<div class="grid grid-cols-2 gap-2 m-2 mt-0 primary">
+		<mat-card *ngFor="let product of products" (click)="gotoProductDetails(product)">
+			<img class="bg-fill h-44 rounded" matCardImage [src]="product.images" />
+			<mat-card-header>
+				<mat-card-title>{{ truncateText(product.title, 10) }}</mat-card-title>
+				<mat-card-subtitle>{{ product.price | currency }}</mat-card-subtitle>
+			</mat-card-header>
+			<p class="line-clamp-3 px-4 pt-2">
+				{{ product.description }}
+			</p>
+		</mat-card>
+	</div>
+	<mat-paginator
+		class="rounded-full"
+		[pageIndex]="pageIndex"
+		hidePageSize="true"
+		[length]="totalProducts"
+		[pageSize]="10"
+		(page)="onPageChange($event)"
+	></mat-paginator>
+
+	<router-outlet></router-outlet>
+</main>
