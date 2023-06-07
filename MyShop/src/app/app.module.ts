@@ -23,6 +23,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 @NgModule({
 	declarations: [AppComponent, LoginPageComponent, HomepageComponent],
@@ -33,6 +34,13 @@ import { CartPageComponent } from './pages/cart-page/cart-page.component';
 @NgModule({
 	declarations: [AppComponent, LoginPageComponent, HomepageComponent, DetailsPageComponent, CartPageComponent],
 >>>>>>> 5ff844f029c062ba2549b00ec27e0b389a04d8a6
+=======
+import { DetailsPageComponent } from './pages/details-page/details-page.component';
+import { CartPageComponent } from './pages/cart-page/cart-page.component';
+
+@NgModule({
+	declarations: [AppComponent, LoginPageComponent, HomepageComponent, DetailsPageComponent, CartPageComponent],
+>>>>>>> 3c6edbde25e06dc13d43f6e00e5967e70596ce27
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
